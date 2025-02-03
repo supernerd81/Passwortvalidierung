@@ -46,8 +46,6 @@ public class PasswordValidation {
     public static boolean frequentlyUsed(String password) {
 
         String[] easyPasswords = { "Password", "Haus", "Garten", "Name", "Aa345678"};
-        Pattern pattern;
-        Matcher matcher;
 
         for(String value : easyPasswords) {
 
