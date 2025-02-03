@@ -98,6 +98,52 @@ public class PasswordValidationTest {
 
 
     // FrequentlyUsed
+    @Test
+    void frequentlyUsed_wordsKnown() {
+        String password = "7=9haHausbWBD§§,eDxc";
+        boolean returns = PasswordValidation.frequentlyUsed(password);
 
+        Assertions.assertTrue(returns);
+    }
+
+    @Test
+    void frequentlyUsed_wordsKnown_lowercase() {
+        String password = "7=9ha haus bWBD§§,eDxc";
+        boolean returns = PasswordValidation.frequentlyUsed(password);
+
+        Assertions.assertTrue(returns);
+    }
+
+    @Test
+    void frequentlyUsed_wordsKnown_lowercase_containAnotherWord() {
+        String password = "7=9ha Garten bWBD§§,eDxc";
+        boolean returns = PasswordValidation.frequentlyUsed(password);
+
+        Assertions.assertTrue(returns);
+    }
+
+    @Test
+    void frequentlyUsed_wordsNotKnown() {
+        String password = "7=9habWBD§§,eDxc";
+        boolean returns = PasswordValidation.frequentlyUsed(password);
+
+        Assertions.assertFalse(returns);
+    }
+
+    @Test
+    void frequentlyUsed_numberSequence_atLeastThree() {
+        String password = "a2345584";
+        boolean returns = PasswordValidation.frequentlyUsed(password);
+
+        Assertions.assertTrue(returns);
+    }
+
+    @Test
+    void frequentlyUsed_numberSequence_lessThree() {
+        String password = "a235584";
+        boolean returns = PasswordValidation.frequentlyUsed(password);
+
+        Assertions.assertFalse(returns);
+    }
 
 }
